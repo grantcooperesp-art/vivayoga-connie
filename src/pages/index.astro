@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import ClassSection from '../components/ClassSection.astro';
+import Schedule from '../components/Schedule.astro';
+import Pricing from '../components/Pricing.astro';
+import Gallery from '../components/Gallery.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { getContent } from '../lib/content';
+
+const c = await getContent('es');
+const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID || 'REPLACE_WITH_YOUR_FORM_ID';
+---
+
+<Layout
+  title="Viva Yoga con Connie | Vinyasa & Yoga de playa en Estepona"
+  description="Vinyasa flow y yoga de playa al amanecer en la Costa del Sol. Clases para todos los niveles con Connie."
+>
+  <Nav lang="es" brand={c.site.brand} brandItalic={c.site.brandItalic} nav={c.site.nav} currentPath="/" />
+
+  <Hero
+    eyebrow={c.hero.eyebrow}
+    headline={c.hero.headline}
+    headlineItalic={c.hero.headlineItalic}
+    subheadline={c.hero.subheadline}
+    ctaText={c.hero.ctaText}
+    ctaLink={c.hero.ctaLink}
+    backgroundImage="/connie-hero.png"
+  />
+
+  <About
+    id="sobre"
+    eyebrow={c.about.eyebrow}
+    headline={c.about.headline}
+    headlineItalic={c.about.headlineItalic}
+    body={c.about.body}
+    stats={c.about.stats}
+    backgroundImage="/connie-vinyasa.png"
+  />
+
+  <span id="clases" class="block -mt-24"></span>
+  {c.classes.map((cls, i) => (
+    <ClassSection
+      id={cls.id}
+      eyebrow={cls.eyebrow}
+      title={cls.title}
+      titleItalic={cls.titleItalic}
+      body={cls.body}
+      details={cls.details}
+      ctaText={cls.ctaText}
+      backgroundImage={`/${cls.image}`}
+    />
+  ))}
+
+  <Schedule
+    id="horario"
+    eyebrow={c.schedule.eyebrow}
+    headline={c.schedule.headline}
+    rows={c.schedule.rows}
+    footer={c.schedule.footer}
+  />
+
+  <Pricing
+    id="precios"
+    eyebrow={c.pricing.eyebrow}
+    headline={c.pricing.headline}
+    headlineItalic={c.pricing.headlineItalic}
+    tiers={c.pricing.tiers}
+    footer={c.pricing.footer}
+  />
+
+  <Gallery
+    id="galeria"
+    eyebrow={c.gallery.eyebrow}
+    headline={c.gallery.headline}
+    headlineItalic={c.gallery.headlineItalic}
+    images={c.gallery.images}
+  />
+
+  <Contact
+    id="contacto"
+    eyebrow={c.contact.eyebrow}
+    headline={c.contact.headline}
+    headlineItalic={c.contact.headlineItalic}
+    subheadline={c.contact.subheadline}
+    whatsapp={c.contact.whatsapp}
+    email={c.contact.email}
+    instagram={c.contact.instagram}
+    whereLabel={c.contact.whereLabel}
+    where={c.contact.where}
+    backgroundImage="/connie-gal-3.png"
+    formspreeId={formspreeId}
+  />
+
+  <Footer
+    brand={c.site.brand}
+    brandItalic={c.site.brandItalic}
+    tagline={c.footer.tagline}
+    instagram={c.contact.instagram.href}
+    whatsapp={c.contact.whatsapp.href}
+    email={c.contact.email.href}
+    copyright={c.footer.copyright}
+  />
+</Layout>

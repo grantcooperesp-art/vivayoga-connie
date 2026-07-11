@@ -1,0 +1,28 @@
+---
+export interface Props {
+  brand: string;
+  brandItalic: string;
+  tagline: string;
+  instagram: string;
+  whatsapp: string;
+  email: string;
+  copyright: string;
+}
+
+const { brand, brandItalic, tagline, instagram, whatsapp, email, copyright } = Astro.props;
+---
+
+<footer class="bg-dark-slate text-cream/80 py-14">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div>
+      <p class="font-display text-2xl text-cream">{brand} <span class="italic">{brandItalic}</span></p>
+      <p class="text-sm mt-1 text-cream/60">{tagline}</p>
+    </div>
+    <div class="flex items-center gap-6 text-sm">
+      <a href={instagram} target="_blank" rel="noopener" class="hover:text-white transition-colors">Instagram</a>
+      <a href={whatsapp} class="hover:text-white transition-colors">WhatsApp</a>
+      <a href={email} class="hover:text-white transition-colors">Email</a>
+    </div>
+    <p class="text-xs text-cream/50">{copyright}</p>
+  </div>
+</footer>

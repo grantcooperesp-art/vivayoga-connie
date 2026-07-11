@@ -1,0 +1,55 @@
+---
+export interface Props {
+  id: string;
+  eyebrow: string;
+  headline: string;
+  headlineItalic: string;
+  tiers: {
+    name: string;
+    price: string;
+    subtitle: string;
+    features: string[];
+    ctaText: string;
+    popular?: boolean;
+    popularLabel?: string;
+  }[];
+  footer: string;
+}
+
+const { id, eyebrow, headline, headlineItalic, tiers, footer } = Astro.props;
+---
+
+<section id={id} class="py-24 md:py-32 bg-sand/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-ocean mb-5">{eyebrow}</p>
+      <h2 class="font-display text-4xl md:text-6xl font-medium mb-4">{headline}<br /><span class="italic">{headlineItalic}</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {tiers.map((t) => (
+        <div class={`fade-in ${t.popular ? 'bg-dark-slate text-cream p-10 relative' : 'bg-cream p-10 border border-sand/40'}`}>
+          {t.popular && t.popularLabel && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-terracotta text-white text-xs uppercase tracking-[0.2em] px-5 py-1.5 rounded-full">
+              {t.popularLabel}
+            </span>
+          )}
+          <p class={`text-sm uppercase tracking-[0.2em] mb-4 ${t.popular ? 'text-sand' : 'text-ocean'}`}>{t.name}</p>
+          <p class="font-display text-6xl font-medium mb-2">{t.price}</p>
+          <p class={`text-sm mb-8 ${t.popular ? 'text-cream/60' : 'text-dark-slate/60'}`}>{t.subtitle}</p>
+          <ul class={`text-sm space-y-3 mb-10 ${t.popular ? 'text-cream/80' : 'text-dark-slate/75'}`}>
+            {t.features.map((f) => <li>· {f}</li>)}
+          </ul>
+          <a
+            href="#contacto"
+            class={`block text-center py-3 rounded-full text-sm font-medium transition-colors ${
+              t.popular
+                ? 'bg-cream text-dark-slate hover:bg-sand'
+                : 'border border-ocean text-ocean hover:bg-ocean hover:text-white'
+            }`}
+          >{t.ctaText}</a>
+        </div>
+      ))}
+    </div>
+    <p class="text-center text-sm text-dark-slate/60 mt-12">{footer}</p>
+  </div>
+</section>

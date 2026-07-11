@@ -1,0 +1,25 @@
+---
+export interface Props {
+  id: string;
+  eyebrow: string;
+  headline: string;
+  headlineItalic: string;
+  images: { src: string; alt: string }[];
+}
+
+const { id, eyebrow, headline, headlineItalic, images } = Astro.props;
+---
+
+<section id={id} class="py-24 md:py-32 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+      <p class="uppercase tracking-[0.3em] text-xs text-ocean mb-5">{eyebrow}</p>
+      <h2 class="font-display text-4xl md:text-6xl font-medium">{headline}<br /><span class="italic">{headlineItalic}</span></h2>
+    </div>
+    <div class="gallery-grid fade-in">
+      {images.map((img) => (
+        <img src={img.src} alt={img.alt} loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>

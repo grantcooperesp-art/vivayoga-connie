@@ -1,0 +1,54 @@
+---
+export interface Props {
+  lang: 'es' | 'en';
+  brand: string;
+  brandItalic: string;
+  nav: {
+    about: string;
+    classes: string;
+    schedule: string;
+    pricing: string;
+    gallery: string;
+    contact: string;
+  };
+  currentPath: string;
+}
+
+const { lang, brand, brandItalic, nav, currentPath } = Astro.props;
+const otherLang = lang === 'es' ? 'en' : 'es';
+const otherLangLabel = lang === 'es' ? 'EN' : 'ES';
+const homeHref = lang === 'es' ? '/' : `/${lang}/`;
+---
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+    <a href={homeHref} class="font-display text-2xl font-semibold text-white nav-text-color transition-colors">
+      {brand} <span class="italic font-normal">{brandItalic}</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium nav-text-color transition-colors">
+      <a href={`${currentPath}#${lang === 'es' ? 'sobre' : 'about'}`} class="hover:opacity-70 transition-opacity">{nav.about}</a>
+      <a href={`${currentPath}#${lang === 'es' ? 'clases' : 'classes'}`} class="hover:opacity-70 transition-opacity">{nav.classes}</a>
+      <a href={`${currentPath}#${lang === 'es' ? 'horario' : 'schedule'}`} class="hover:opacity-70 transition-opacity">{nav.schedule}</a>
+      <a href={`${currentPath}#${lang === 'es' ? 'precios' : 'pricing'}`} class="hover:opacity-70 transition-opacity">{nav.pricing}</a>
+      <a href={`${currentPath}#${lang === 'es' ? 'galeria' : 'gallery'}`} class="hover:opacity-70 transition-opacity">{nav.gallery}</a>
+      <a href={`${currentPath}#${lang === 'es' ? 'contacto' : 'contact'}`} class="hover:opacity-70 transition-opacity">{nav.contact}</a>
+      <a
+        href={otherLang === 'es' ? '/' : `/${otherLang}/`}
+        class="ml-4 px-3 py-1 border border-current rounded-full text-xs tracking-wider hover:bg-white hover:text-dark-slate transition-colors"
+      >{otherLangLabel}</a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden nav-text-color text-2xl" aria-label="Menu">☰</button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-cream px-6 py-4 space-y-3 text-sm font-medium">
+    <a href={`${currentPath}#${lang === 'es' ? 'sobre' : 'about'}`} class="block">{nav.about}</a>
+    <a href={`${currentPath}#${lang === 'es' ? 'clases' : 'classes'}`} class="block">{nav.classes}</a>
+    <a href={`${currentPath}#${lang === 'es' ? 'horario' : 'schedule'}`} class="block">{nav.schedule}</a>
+    <a href={`${currentPath}#${lang === 'es' ? 'precios' : 'pricing'}`} class="block">{nav.pricing}</a>
+    <a href={`${currentPath}#${lang === 'es' ? 'galeria' : 'gallery'}`} class="block">{nav.gallery}</a>
+    <a href={`${currentPath}#${lang === 'es' ? 'contacto' : 'contact'}`} class="block">{nav.contact}</a>
+    <a
+      href={otherLang === 'es' ? '/' : `/${otherLang}/`}
+      class="block pt-2 border-t border-sand"
+    >{otherLang === 'es' ? 'English →' : '← Español'}</a>
+  </div>
+</nav>

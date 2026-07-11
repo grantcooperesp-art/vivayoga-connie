@@ -1,0 +1,37 @@
+---
+export interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  titleItalic: string;
+  body: string;
+  details: string[];
+  ctaText: string;
+  backgroundImage: string;
+  ctaLink?: string;
+}
+
+const { id, eyebrow, title, titleItalic, body, details, ctaText, backgroundImage, ctaLink = '#contacto' } = Astro.props;
+---
+
+<section id={id} class="parallax-section" style={`background-image: url('${backgroundImage}')`}>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content max-w-6xl mx-auto px-6 w-full">
+    <div class="grid md:grid-cols-2 gap-10 md:gap-20 items-center">
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-sand mb-4">{eyebrow}</p>
+        <h2 class="font-display text-5xl md:text-7xl font-medium leading-[1.02]">{title}<br /><span class="italic">{titleItalic}</span></h2>
+      </div>
+      <div>
+        <p class="text-lg leading-relaxed text-cream/90 mb-6">{body}</p>
+        <ul class="text-sm text-cream/80 space-y-2">
+          {details.map((d) => <li>· {d}</li>)}
+        </ul>
+        <a
+          href={ctaLink}
+          class="inline-block mt-8 px-8 py-3 border border-white/70 rounded-full text-sm font-medium hover:bg-white hover:text-dark-slate transition-colors"
+        >{ctaText}</a>
+      </div>
+    </div>
+  </div>
+</section>
