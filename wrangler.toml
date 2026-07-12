@@ -1,9 +1,8 @@
-name = "vivayoga-connie"
-compatibility_date = "2024-10-01"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "dist"
-
-# Custom domain — set this in Cloudflare dashboard after first deploy
-# [[routes]]
-# pattern = "vivayogaconnie.com/*"
-# custom_domain = true
+# wrangler.toml was removed because Cloudflare Pages auto-deploys from the `dist/`
+# build output directory configured in the Pages project settings, and mixing
+# Workers-style config (compatibility_date, compatibility_flags) with Pages
+# config (pages_build_output_dir) caused wrangler to use the wrong deploy
+# command at build time.
+#
+# If you ever need a wrangler.toml for custom Pages deployment logic, keep it
+# Pages-only and add the file back. For now: not needed.
