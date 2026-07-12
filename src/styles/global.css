@@ -6,15 +6,6 @@ body {
 .font-display {
   font-family: 'Cormorant Garamond', serif;
 }
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 .nav-scrolled {
   background: rgba(253, 251, 247, 0.95);
   backdrop-filter: blur(8px);

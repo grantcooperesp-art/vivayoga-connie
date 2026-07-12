@@ -21,13 +21,13 @@ const { id, eyebrow, headline, headlineItalic, tiers, footer } = Astro.props;
 
 <section id={id} class="py-24 md:py-32 bg-sand/30">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 fade-in">
+    <div class="text-center mb-16">
       <p class="uppercase tracking-[0.3em] text-xs text-ocean mb-5">{eyebrow}</p>
       <h2 class="font-display text-4xl md:text-6xl font-medium mb-4">{headline}<br /><span class="italic">{headlineItalic}</span></h2>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
       {tiers.map((t) => (
-        <div class={`fade-in ${t.popular ? 'bg-dark-slate text-cream p-10 relative' : 'bg-cream p-10 border border-sand/40'}`}>
+        <div class={`${t.popular ? 'bg-dark-slate text-cream p-10 relative' : 'bg-cream p-10 border border-sand/40'}`}>
           {t.popular && t.popularLabel && (
             <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-terracotta text-white text-xs uppercase tracking-[0.2em] px-5 py-1.5 rounded-full">
               {t.popularLabel}
